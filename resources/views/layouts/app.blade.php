@@ -8,7 +8,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Social Network</title>
+
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="24x24">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -27,6 +29,7 @@
                 <div class="uk-navbar-left">
                     <!-- Branding Image -->
                     <a class="uk-navbar-item uk-logo" href="{{ url('/') }}">
+                        <img class="navbar_logo" src="{{ asset('images/logo.png') }}" alt="logo">
                         Social Network
                     </a>
                 </div>
