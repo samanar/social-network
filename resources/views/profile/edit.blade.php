@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="uk-card-body">
-                        <div class="uk-margin" uk-grid>
+                        <div class="uk-margin">
                             <form class="uk-form-stacked" role="form" method="POST"
                                   action="{{ route('profile.update') }}">
 
@@ -46,7 +46,7 @@
                                     <input id="email" type="email"
                                            class="uk-input{{ $errors->has('email') ? ' uk-form-danger' : '' }}"
                                            name="email"
-                                           value="{{ old('email') }}" required>
+                                           value="{{ $user->email }}" required>
 
                                     @if ($errors->has('email'))
                                         <div class="uk-alert-danger" uk-alert>
@@ -59,8 +59,8 @@
                                     <label class="uk-form-label">Gender</label>
                                     <select name="gender" id="gender"
                                             class="uk-select {{ $errors->has('gender') ? ' uk-form-danger' : '' }}">
-                                        <option value="1" @if(old('gender') == 1) selected @endif>Male</option>
-                                        <option value="0 @if(old('gender') == 0) selected @endif">Female</option>
+                                        <option value="1" @if($user->gender == 1) selected @endif>Male</option>
+                                        <option value="0" @if($user->gender == 0) selected @endif>Female</option>
                                     </select>
 
                                     @if ($errors->has('gender'))
@@ -71,49 +71,61 @@
                                 </div>
 
                                 <div class="uk-margin">
-                                    <label class="uk-form-label">Password</label>
-                                    <input id="password" type="password"
-                                           class="uk-input{{ $errors->has('password') ? ' uk-form-danger' : '' }}"
-                                           name="password" value="{{ old('password') }}" required>
+                                    <label class="uk-form-label">Phone</label>
+                                    <input id="phone" type="text"
+                                           placeholder="phone"
+                                           class="uk-input{{ $errors->has('phone') ? ' uk-form-danger' : '' }}"
+                                           name="phone" value="{{ $profile->phone }}">
 
-                                    @if ($errors->has('password'))
+                                    @if ($errors->has('phone'))
                                         <div class="uk-alert-danger" uk-alert>
-                                            {{ $errors->first('password') }}
+                                            {{ $errors->first('phone') }}
                                         </div>
                                     @endif
                                 </div>
 
                                 <div class="uk-margin">
-                                    <label class="uk-form-label">Confirm Password</label>
-                                    <input id="password_confirmation" type="password"
-                                           class="uk-input{{ $errors->has('password_confirmation') ? ' uk-form-danger' : '' }}"
-                                           name="password_confirmation" value="{{ old('password_confirmation') }}"
-                                           required>
+                                    <label class="uk-form-label">Location</label>
+                                    <input id="location" type="text"
+                                           placeholder="location"
+                                           class="uk-input{{ $errors->has('location') ? ' uk-form-danger' : '' }}"
+                                           name="location" value="{{ $profile->location }}"
+                                    >
 
-                                    @if ($errors->has('password_confirmation'))
+                                    @if ($errors->has('location'))
                                         <div class="uk-alert-danger" uk-alert>
-                                            {{ $errors->first('password_confirmation') }}
+                                            {{ $errors->first('location') }}
                                         </div>
                                     @endif
                                 </div>
 
                                 <div class="uk-margin">
-                                    <button class="uk-button uk-button-primary" type="submit" name="button">Register
+                                    <label class="uk-form-label">About me:</label>
+
+                                    <textarea name="description" id="description" rows="5"
+                                              placeholder="About me"
+                                              class="uk-textarea">{{ $profile->description }}</textarea>
+
+                                    @if ($errors->has('description'))
+                                        <div class="uk-alert-danger" uk-alert>
+                                            {{ $errors->first('description') }}
+                                        </div>
+                                    @endif
+                                </div>
+
+                                <div class="uk-margin">
+                                    <button class="uk-button uk-button-primary uk-width-1-1" type="submit"
+                                            name="button">
+                                        Edit Data
                                     </button>
-                                    <a class="uk-float-right" href="{{ route('login') }}">
-                                        Already have an account?
+                                    <a href="{{ route('profile' , $user->slug) }}"
+                                       class="uk-button uk-button-danger uk-width-1-1 uk-margin">
+                                        Cancel
                                     </a>
                                 </div>
-
                             </form>
                         </div>
                     </div>
-                    @if( Auth::user()->id == $user->id )
-                        <div class="uk-card-footer">
-                            <a href="#" class="uk-button uk-button-primary">Edit profile info</a>
-                            <a href="#" class="uk-button uk-button-danger">Edit credentials</a>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>

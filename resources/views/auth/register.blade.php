@@ -44,7 +44,7 @@
                             <label class="uk-form-label">Gender</label>
                             <select name="gender" id="gender" class="uk-select {{ $errors->has('gender') ? ' uk-form-danger' : '' }}">
                                 <option value="1" @if(old('gender') == 1) selected @endif>Male</option>
-                                <option value="0 @if(old('gender') == 0) selected @endif">Female</option>
+                                <option value="0" @if(old('gender') == 0) selected @endif>Female</option>
                             </select>
 
                             @if ($errors->has('gender'))

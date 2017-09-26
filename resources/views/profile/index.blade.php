@@ -30,24 +30,24 @@
                             <div class="uk-width-2-3 text">{{ ($user->gender) ? 'Male' : 'Female' }}</div>
                             <div class="uk-width-1-3 label">Phone :</div>
                             <div class="uk-width-2-3 text">
-                                @if(isset( $user->profile()->phone ))
-                                    {{ $user->profile()->phone }}
+                                @if(isset( $user->profile->phone ))
+                                    {{ $user->profile->phone }}
                                 @else
                                     -
                                 @endif
                             </div>
                             <div class="uk-width-1-3 label">Location :</div>
                             <div class="uk-width-2-3 text">
-                                @if(isset( $user->profile()->location ))
-                                    {{ $user->profile()->location }}
+                                @if(isset( $user->profile->location ))
+                                    {{ $user->profile->location }}
                                 @else
                                     -
                                 @endif
                             </div>
                             <div class="uk-width-1-3 label">About me :</div>
                             <div class="uk-width-2-3 text">
-                                @if(isset( $user->profile()->description ))
-                                    {{ $user->profile()->description }}
+                                @if(isset( $user->profile->description ))
+                                    {{ $user->profile->description }}
                                 @else
                                     -
                                 @endif
@@ -56,8 +56,9 @@
                     </div>
                     @if( Auth::user()->id == $user->id )
                         <div class="uk-card-footer">
-                            <a href="#" class="uk-button uk-button-primary">Edit profile info</a>
-                            <a href="#" class="uk-button uk-button-danger">Edit credentials</a>
+                            <a href="{{ route('profile.edit') }}" class="uk-button uk-button-primary">Edit profile
+                                info</a>
+                            <a href="#" class="uk-button uk-button-danger">Change Password</a>
                         </div>
                     @endif
                 </div>
